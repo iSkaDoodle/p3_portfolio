@@ -1,0 +1,1714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>P3R // DANIEL JOHN BASILAN — Full-Stack Developer Portfolio</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow+Condensed:ital,wght@0,600;0,700;0,800;1,700;1,800&family=Plus+Jakarta+Sans:ital,wght@0,400;0,500;0,600;0,700;0,800;1,700;1,800&display=swap" rel="stylesheet">
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            p3Navy: '#04122B',
+            p3Royal: '#0033A0',
+            p3Blue: '#0066FF',
+            p3Cyan: '#00D8FF',
+            p3Ice: '#E8F4FF',
+            p3Crimson: '#FF1E42',
+            p3Pink: '#FF5C8A',
+          },
+          fontFamily: {
+            display: ['Anton', 'sans-serif'],
+            condensed: ['"Barlow Condensed"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    * {
+      box-sizing: border-box;
+      user-select: none;
+    }
+
+    body {
+      margin: 0;
+      background-color: #0033A0;
+      color: #FFFFFF;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      overflow: hidden;
+    }
+
+    /* ============================================================
+       LITERAL P3R TYPOGRAPHY & GEOMETRY
+       ============================================================ */
+    .p3-font-display {
+      font-family: 'Anton', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.02em;
+    }
+
+    .p3-font-cond {
+      font-family: 'Barlow Condensed', sans-serif;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .p3-menu-tilt {
+      transform: none;
+    }
+
+.p3-word-node {
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Sharp P3R Wedge: cuts across the middle of the text so the red bottoms hang out */
+.shard-white-main {
+  clip-path: polygon(0% 68%, 97% 0%, 88% 64%, 2% 76%);
+}
+.shard-pink-accent {
+  clip-path: polygon(0% 78%, 100% 3%, 92% 78%, 5% 82%);
+}
+
+    /* Punchy asymmetric P3R shard where the letters break past the bottom edge */
+    .shard-white-main {
+      clip-path: polygon(2% 18%, 98% 0%, 88% 78%, 0% 94%);
+    }
+    .shard-pink-accent {
+      clip-path: polygon(0% 34%, 100% 10%, 91% 96%, 4% 88%);
+    }
+
+    /* Giant Vertical 'MAIN' Watermark on Far-Left Edge */
+    .p3-vertical-main {
+      writing-mode: vertical-rl;
+      font-family: 'Anton', sans-serif;
+      line-height: 0.82;
+      letter-spacing: -0.02em;
+    }
+
+    /* Active P3R Menu Word: Dual-Tone Black & Crimson Split Fill */
+    .p3-active-word {
+      background: linear-gradient(176deg, #050A14 0%, #050A14 48%, #E60026 49%, #E60026 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(2px 2px 0px rgba(255, 30, 66, 0.35));
+    }
+
+    /* Unselected P3R Menu Word: Translucent Electric Cyan Blending into Water */
+    .p3-idle-word {
+      color: rgba(115, 236, 255, 0.88);
+      text-shadow: 0 3px 14px rgba(0, 35, 120, 0.65);
+    }
+
+    /* P3R Sharp Polygon Shards */
+    .shard-white-main {
+      clip-path: polygon(1% 16%, 99% 0%, 91% 86%, 0% 100%);
+    }
+    .shard-pink-accent {
+      clip-path: polygon(6% 0%, 100% 14%, 93% 100%, 0% 84%);
+    }
+    .shard-new-badge {
+      clip-path: polygon(12% 0%, 100% 0%, 88% 100%, 0% 100%);
+    }
+    .shard-header-banner {
+      clip-path: polygon(3% 0%, 100% 0%, 97% 100%, 0% 100%);
+    }
+    .shard-sub-white-bg {
+      clip-path: polygon(0 0, 68% 0, 52% 100%, 0% 100%);
+    }
+    .shard-sub-cyan-trim {
+      clip-path: polygon(67.2% 0, 69.5% 0, 53.5% 100%, 51.2% 100%);
+    }
+    .shard-row-skew {
+      clip-path: polygon(1.5% 0%, 100% 0%, 98.5% 100%, 0% 100%);
+    }
+    .shard-tab-skew {
+      clip-path: polygon(6% 0%, 100% 0%, 94% 100%, 0% 100%);
+    }
+
+    /* ============================================================
+       CRIT / ALL-OUT ATTACK EYE SLASH CUT-IN (ENTER SUB-SCREEN)
+       ============================================================ */
+    #critCutin {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      pointer-events: none;
+      opacity: 0;
+      visibility: hidden;
+      background: radial-gradient(circle at 50% 48%, #0088FF 0%, #002266 55%, #020817 100%);
+      transition: opacity 0.08s ease-out;
+    }
+
+    #critCutin.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .crit-blade {
+      position: absolute;
+      left: -20%;
+      width: 140%;
+      background: #FFFFFF;
+      box-shadow: 0 0 28px #00D8FF, 0 0 60px #FFFFFF;
+      transform: rotate(-16deg) scaleX(0);
+      transform-origin: left center;
+      transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #critCutin.active .crit-blade-1 {
+      top: 34%;
+      height: 10px;
+      transform: rotate(-16deg) scaleX(1);
+    }
+
+    #critCutin.active .crit-blade-2 {
+      top: 62%;
+      height: 6px;
+      background: #00D8FF;
+      transform: rotate(-16deg) scaleX(1);
+      transition-delay: 0.04s;
+    }
+
+    .crit-eye-box {
+      transform: scale(1.18);
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #critCutin.active .crit-eye-box {
+      transform: scale(1);
+    }
+
+    /* ============================================================
+       DIAGONAL COLOR-BLOCK WIPE (RETURN TO MAIN MENU)
+       ============================================================ */
+    .wipe-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 55;
+      pointer-events: none;
+    }
+
+    .wipe-bar {
+      position: absolute;
+      top: -15%;
+      left: -25%;
+      width: 150%;
+      height: 130%;
+      transform: translateX(-115%) skewX(-20deg);
+      transition: transform 0.32s cubic-bezier(0.77, 0, 0.175, 1);
+    }
+
+    .wipe-in .wipe-bar-1 { transform: translateX(0%) skewX(-20deg); transition-delay: 0s; }
+    .wipe-in .wipe-bar-2 { transform: translateX(0%) skewX(-20deg); transition-delay: 0.04s; }
+    .wipe-in .wipe-bar-3 { transform: translateX(0%) skewX(-20deg); transition-delay: 0.08s; }
+
+    .wipe-out .wipe-bar-1 { transform: translateX(115%) skewX(-20deg); transition-delay: 0.06s; }
+    .wipe-out .wipe-bar-2 { transform: translateX(115%) skewX(-20deg); transition-delay: 0.03s; }
+    .wipe-out .wipe-bar-3 { transform: translateX(115%) skewX(-20deg); transition-delay: 0s; }
+
+    @keyframes subtleBob {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-8px); }
+    }
+    .animate-bob {
+      animation: subtleBob 4.5s ease-in-out infinite;
+    }
+
+    /* Custom Thin Scrollbar */
+    .p3-scroll::-webkit-scrollbar { width: 5px; }
+    .p3-scroll::-webkit-scrollbar-track { background: rgba(4, 18, 43, 0.25); }
+    .p3-scroll::-webkit-scrollbar-thumb { background: #0066FF; }
+  </style>
+</head>
+<body class="h-screen w-screen overflow-hidden relative">
+
+  <!-- ============================================================
+       LAYER 0: FULL-BLEED P3R VIDEO LOOP, BGM AUDIO & WATER CANVAS
+       ============================================================ -->
+  <div class="fixed inset-0 z-0 overflow-hidden bg-gradient-to-br from-[#0088FF] via-[#0044CC] to-[#02143B]">
+    <video
+      id="bgVideoLoop"
+      class="absolute inset-0 w-full h-full object-cover opacity-0 transition-opacity duration-300"
+      autoplay
+      muted
+      playsinline
+      src="./public/videos/first_load.mp4"
+    ></video>
+
+    <audio id="bgmAudio" src="./public/audio/Color Your Night.mp3" preload="auto"></audio>
+
+    <canvas id="waterCanvas" class="absolute inset-0 w-full h-full pointer-events-none"></canvas>
+
+    <!-- Top White Caustic Water Surface Ripples -->
+    <svg class="absolute top-0 left-0 w-full h-24 sm:h-32 pointer-events-none opacity-40" viewBox="0 0 1440 160" preserveAspectRatio="none">
+      <path fill="#FFFFFF" fill-opacity="0.35" d="M0,0 L1440,0 L1440,42 C1280,75 1120,10 960,48 C800,85 640,18 480,52 C320,86 160,22 0,58 Z"></path>
+      <path fill="#00D8FF" fill-opacity="0.4" d="M0,0 L1440,0 L1440,24 C1220,58 1040,5 840,36 C640,68 420,12 210,44 C110,58 50,35 0,28 Z"></path>
+    </svg>
+  </div>
+
+  <!-- ============================================================
+       LAYER 1: CRIT / ALL-OUT ATTACK EYE SLASH CUT-IN
+       ============================================================ -->
+  <div id="critCutin" class="flex items-center justify-center">
+    <div class="crit-eye-box relative w-full h-64 sm:h-80 flex items-center justify-center overflow-hidden border-y-4 border-white bg-[#001F5C]">
+      <svg viewBox="0 0 1000 300" class="w-full h-full object-cover">
+        <defs>
+          <radialGradient id="eyeGlow" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#FFFFFF"/>
+            <stop offset="35%" stop-color="#00D8FF"/>
+            <stop offset="100%" stop-color="#0033A0"/>
+          </radialGradient>
+        </defs>
+        <rect width="1000" height="300" fill="#031230"/>
+        <polygon points="150,0 320,0 240,230" fill="#0055DD" opacity="0.75"/>
+        <polygon points="420,0 560,0 470,250" fill="#0088FF" opacity="0.85"/>
+        <polygon points="680,0 850,0 740,220" fill="#0055DD" opacity="0.75"/>
+        <polygon points="270,145 360,120 430,145 355,175" fill="#FFFFFF"/>
+        <circle cx="355" cy="147" r="24" fill="url(#eyeGlow)"/>
+        <circle cx="355" cy="147" r="9" fill="#020B1C"/>
+        <circle cx="348" cy="140" r="4" fill="#FFFFFF"/>
+        <polygon points="570,145 640,120 730,145 645,175" fill="#FFFFFF"/>
+        <circle cx="645" cy="147" r="24" fill="url(#eyeGlow)"/>
+        <circle cx="645" cy="147" r="9" fill="#020B1C"/>
+        <circle cx="638" cy="140" r="4" fill="#FFFFFF"/>
+        <line x1="0" y1="60" x2="1000" y2="20" stroke="#00D8FF" stroke-width="2" opacity="0.5"/>
+        <line x1="0" y1="240" x2="1000" y2="200" stroke="#FFFFFF" stroke-width="2" opacity="0.4"/>
+      </svg>
+      <div class="crit-blade crit-blade-1"></div>
+      <div class="crit-blade crit-blade-2"></div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       LAYER 2: DIAGONAL COLOR WIPE OVERLAY (BACK TO MAIN MENU)
+       ============================================================ -->
+  <div id="wipeOverlay" class="wipe-overlay">
+    <div class="wipe-bar wipe-bar-1 bg-white"></div>
+    <div class="wipe-bar wipe-bar-2 bg-[#00D8FF]"></div>
+    <div class="wipe-bar wipe-bar-3 bg-[#0033A0]"></div>
+  </div>
+
+  <!-- ============================================================
+       TOP HUD: LITERAL P3R UPPER-LEFT STAT BOX & TOP-RIGHT NAME BADGE
+       ============================================================ -->
+  <header id="topHud" class="fixed top-0 left-0 right-0 z-30 flex items-start justify-between px-5 sm:px-9 pt-4 sm:pt-5 pointer-events-none opacity-0 transition-opacity duration-500">
+    <!-- Upper-Left Crisp White Stat Box -->
+    <div class="pointer-events-auto bg-white text-[#050A14] border border-[#050A14] px-3.5 py-1.5 shadow-[3px_3px_0px_rgba(4,18,43,0.45)] min-w-[155px]">
+      <div class="flex items-baseline gap-1.5 leading-none">
+        <span class="font-extrabold text-xs text-[#0033A0]">LVL</span>
+        <span id="topStatMain" class="p3-font-cond font-extrabold text-xl sm:text-2xl tracking-tight text-[#050A14]">21 // DEV</span>
+      </div>
+      <div id="topStatSub" class="text-[10px] font-bold text-slate-600 tracking-tight mt-0.5">
+        current status • full-stack
+      </div>
+    </div>
+
+    <!-- Top-Right Skewed Identity & BGM Toggle -->
+    <div class="flex flex-col items-end gap-1.5 pointer-events-auto">
+      <div class="bg-[#04122B] text-[#00D8FF] px-3 py-0.5 shard-header-banner text-[10px] font-extrabold tracking-widest shadow">
+        FULL-STACK DEVELOPER // FIRESTORE
+      </div>
+      <div class="bg-white text-[#04122B] px-4 py-1 shard-header-banner shadow-[0_6px_20px_rgba(0,20,80,0.4)]">
+        <h1 class="p3-font-display text-2xl sm:text-3xl leading-none tracking-tight">
+          DANIEL JOHN BASILAN
+        </h1>
+      </div>
+      <div class="flex items-center gap-1.5 mt-0.5">
+        <button
+          onclick="toggleSfx()"
+          class="flex items-center gap-2 bg-[#04122B]/90 hover:bg-white hover:text-[#04122B] text-white border-l-4 border-[#FF1E42] px-2.5 py-1 shadow transition cursor-pointer"
+        >
+          <span id="sfxStateIcon" class="text-[11px]">🔇</span>
+          <span id="sfxStateText" class="p3-font-cond font-extrabold text-[11px] tracking-wider">BGM: OFF</span>
+          <span class="text-white/30">|</span>
+          <span id="bgmTrackLabel" class="text-[9px] text-[#00D8FF] font-bold tracking-wider max-w-[130px] truncate">COLOR YOUR NIGHT</span>
+        </button>
+        <button
+          onclick="nextBgmTrack()"
+          title="Next P3R Track"
+          class="bg-[#04122B]/90 hover:bg-[#00D8FF] hover:text-[#04122B] text-white border border-white/20 px-2 py-1 text-[11px] font-extrabold shadow transition cursor-pointer"
+        >
+          ⏭
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================================
+       MAIN VIEWPORT STAGE
+       ============================================================ -->
+  <main id="appViewport" class="relative z-10 w-full h-full opacity-0 transition-opacity duration-500">
+    <!-- Dynamic Screen Rendered Here -->
+  </main>
+
+  <!-- ============================================================
+       BOTTOM-RIGHT LITERAL P3R COMMAND PROMPT & KEY LEGEND
+       ============================================================ -->
+  <footer id="bottomHud" class="fixed bottom-0 left-0 right-0 z-30 flex items-end justify-between px-5 sm:px-9 pb-4 sm:pb-5 pointer-events-none opacity-0 transition-opacity duration-500">
+    <!-- Bottom-Left Subtle Navigation Hint -->
+    <div id="leftSubControls" class="hidden items-center gap-2 pointer-events-auto">
+      <div id="tabKeyHint" class="hidden items-center gap-1.5 bg-[#04122B]/90 px-2.5 py-1 border border-white/20 shadow">
+        <span class="bg-white text-[#04122B] font-extrabold text-[10px] px-1.5 py-0.5">Q / E</span>
+        <span class="p3-font-cond font-bold text-xs tracking-wider text-white">LB / RB</span>
+      </div>
+    </div>
+    <div></div>
+
+    <!-- Bottom-Right Literal P3R Command Description + Confirm/Close Legend -->
+    <div class="flex flex-col items-end pointer-events-auto">
+      <div class="text-right mb-1.5 min-w-[200px] sm:min-w-[240px]">
+        <div id="cmdTitle" class="italic font-extrabold text-base sm:text-xl text-white drop-shadow-[0_2px_8px_rgba(0,15,60,0.9)] tracking-tight leading-none">
+          Inspect Deployed Systems
+        </div>
+        <div class="flex items-center justify-end gap-2 mt-1">
+          <span class="text-[10px] font-bold text-white/90 tracking-wide drop-shadow">Command</span>
+          <span class="h-[1.5px] w-24 sm:w-32 bg-white/85 shadow"></span>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-3 text-white drop-shadow-[0_2px_6px_rgba(0,10,40,0.9)]">
+        <button onclick="triggerActiveSelection()" class="flex items-center gap-1.5 hover:text-[#00D8FF] transition cursor-pointer">
+          <span class="bg-[#04122B]/90 border border-white text-white font-extrabold text-[10px] px-1.5 py-0.5 leading-none">ENTER</span>
+          <span class="font-extrabold text-xs sm:text-sm tracking-wide">Confirm</span>
+        </button>
+        <button id="closeOrBackBtn" onclick="handleBackAction()" class="flex items-center gap-1.5 hover:text-[#FF5C8A] transition cursor-pointer">
+          <span id="closeOrBackKey" class="bg-[#04122B]/90 border border-white text-white font-extrabold text-[10px] px-1.5 py-0.5 leading-none">↑ / ↓</span>
+          <span id="closeOrBackLabel" class="font-extrabold text-xs sm:text-sm tracking-wide">Navigate</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Certificate Inspection Modal -->
+  <div id="certModal" class="hidden fixed inset-0 z-50 bg-[#04122B]/85 backdrop-blur-sm flex items-center justify-center p-4" onclick="closeCertModal()">
+    <div class="bg-white text-[#04122B] max-w-xl w-full border-t-8 border-[#FF1E42] p-6 shadow-2xl relative" onclick="event.stopPropagation()">
+      <div class="flex items-start justify-between border-b-2 border-slate-200 pb-3 mb-4">
+        <div>
+          <span id="modalCertBadge" class="bg-[#0033A0] text-white text-[10px] font-extrabold px-2 py-0.5 tracking-widest uppercase">VERIFIED CREDENTIAL</span>
+          <h3 id="modalCertTitle" class="p3-font-display text-3xl text-[#04122B] mt-1">Certificate Title</h3>
+          <p id="modalCertIssuer" class="text-xs font-bold text-[#0066FF]">Issuer Name • 2026</p>
+        </div>
+        <button onclick="closeCertModal()" class="bg-[#FF1E42] text-white font-extrabold text-xs px-3 py-1.5 cursor-pointer">✕ CLOSE</button>
+      </div>
+      <div class="w-full h-56 bg-[#E8F4FF] border-2 border-dashed border-[#0066FF] flex flex-col items-center justify-center p-4 text-center mb-4">
+        <div class="p3-font-display text-2xl text-[#0033A0] mb-1">CERTIFICATE OF COMPLETION</div>
+        <div id="modalCertRecipient" class="text-sm font-extrabold text-[#04122B]">DANIEL JOHN BASILAN</div>
+        <div id="modalCertDesc" class="text-xs text-slate-600 max-w-md mt-2">Credential verification details.</div>
+        <div id="modalCertCode" class="mt-3 font-mono text-[11px] bg-white px-2.5 py-1 border border-slate-300 text-slate-700">ID: CERT-0000</div>
+      </div>
+      <div class="flex justify-end">
+        <button onclick="closeCertModal()" class="bg-[#04122B] text-white font-extrabold text-xs px-5 py-2 cursor-pointer">CONFIRM</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification -->
+  <div id="toastBanner" class="fixed top-16 left-1/2 -translate-x-1/2 z-50 opacity-0 pointer-events-none transition-all duration-200 bg-[#04122B] border-l-4 border-[#00D8FF] text-white px-5 py-2.5 shadow-2xl">
+    <span id="toastText" class="p3-font-cond font-bold text-sm tracking-wider">Notification</span>
+  </div>
+
+  <script>
+    // ============================================================
+    // 1. MEDIA & FIRESTORE-STRUCTURED PORTFOLIO DATA
+    // ============================================================
+    const MEDIA_PATHS = {
+      videos: {
+        HOME: "./public/videos/main1.mp4",
+        PROJECTS: "./public/videos/main2.mp4",
+        SKILLS: "./public/videos/main2.mp4",
+        CERTIFICATES: "./public/videos/main2.mp4",
+        ABOUT: "./public/videos/main3.mp4",
+        CONTACT: "./public/videos/main3.mp4"
+      },
+      bgmTracks: [
+        { title: "COLOR YOUR NIGHT", src: "./public/audio/Color Your Night.mp3" },
+        { title: "FULL MOON FULL LIFE", src: "./public/audio/Full Moon Full Life.mp3" },
+        { title: "CHANGING SEASONS", src: "./public/audio/Changing Seasons -Reload-.mp3" },
+        { title: "JOY (P3R VER.)", src: "./public/audio/Joy (P3R ver.).mp3" },
+        { title: "WANT TO BE CLOSE", src: "./public/audio/Want To Be Close -Reload-.mp3" },
+        { title: "WHEN THE MOON'S REACHING OUT", src: "./public/audio/When The Moon's Reaching Out Stars -Reload-.mp3" },
+        { title: "IWATODAI DORM", src: "./public/audio/巌戸台分寮 -Reload-.mp3" },
+        { title: "AFTER THE BATTLE", src: "./public/audio/戦いのあと (P3R ver.).mp3" }
+      ]
+    };
+
+    const DEV_DATA = {
+      name: "DANIEL JOHN BASILAN",
+      role: "FULL-STACK DEVELOPER",
+      handle: "@iSkaDoodle",
+      email: "basilandj@gmail.com",
+menu: [
+  {
+    id: "PROJECTS",
+    label: "PROJECTS",
+    isNew: true,
+    cmdDesc: "Inspect Deployed Systems",
+    poseStyle: "transform: rotate(-19deg) skewX(10deg) translate(-6px, 0px); z-index: 30;"
+  },
+  {
+    id: "SKILLS",
+    label: "SKILLS",
+    isNew: false,
+    cmdDesc: "Check Technical Loadout",
+    poseStyle: "transform: rotate(-6deg) skewX(5deg) translate(20px, -2px); z-index: 15;"
+  },
+  {
+    id: "ABOUT",
+    label: "ABOUT",
+    isNew: false,
+    cmdDesc: "View Architect Status",
+    poseStyle: "transform: rotate(-13deg) skewX(7deg) translate(-4px, 4px); z-index: 25;"
+  },
+  {
+    id: "CERTIFICATES",
+    label: "CERTIFICATES",
+    isNew: false,
+    cmdDesc: "Verify Credentials",
+    poseStyle: "transform: rotate(-16deg) skewX(9deg) translate(-10px, 6px); z-index: 20;"
+  },
+  {
+    id: "CONTACT",
+    label: "CONTACT",
+    isNew: true,
+    cmdDesc: "Open Mail Transmission",
+    poseStyle: "transform: rotate(11deg) skewX(-5deg) translate(10px, -6px); z-index: 18;"
+  }
+],
+      projects: [
+        {
+          id: "PRJ-01",
+          title: "BUTIK Floral E-Commerce",
+          stackLabel: "React • Firebase",
+          year: "2026",
+          isNew: true,
+          summary: "Full-stack boutique floral storefront with custom bouquet builder, real-time inventory sync, and Firestore order tracking.",
+          architecture: "React + Tailwind frontend wired to Firestore collections, Firebase Auth customer sessions, and Cloud Storage product galleries.",
+          tags: ["React", "TypeScript", "Firebase", "Tailwind CSS"],
+          liveUrl: "#butik-live",
+          repoUrl: "https://github.com/iSkaDoodle"
+        },
+        {
+          id: "PRJ-02",
+          title: "P3R Portfolio Engine",
+          stackLabel: "HTML/JS • Firestore",
+          year: "2026",
+          isNew: true,
+          summary: "1-to-1 Persona 3 Reload interactive pause menu portfolio featuring polygon shard selectors, Crit Eye Slash transitions, and Mail inbox.",
+          architecture: "Pure CSS clip-path geometry, HTML5 video loop fallback canvas, and Firestore-backed CMS collections.",
+          tags: ["JavaScript", "CSS Clip-Path", "Firestore", "Web Audio"],
+          liveUrl: "#p3r-live",
+          repoUrl: "https://github.com/iSkaDoodle"
+        },
+        {
+          id: "PRJ-03",
+          title: "3D PyOpenGL Diamond Renderer",
+          stackLabel: "Python • OpenGL",
+          year: "2025",
+          isNew: false,
+          summary: "Interactive 3D geometric diamond mesh renderer with real-time vertex lighting, matrix transformations, and camera orbit controls.",
+          architecture: "Custom shader pipeline and procedural facet normals built in Python with PyOpenGL and NumPy.",
+          tags: ["Python", "PyOpenGL", "3D Math", "Shaders"],
+          liveUrl: "#opengl-live",
+          repoUrl: "https://github.com/iSkaDoodle"
+        },
+        {
+          id: "PRJ-04",
+          title: "Microservices VM Lab",
+          stackLabel: "Docker • Linux",
+          year: "2025",
+          isNew: false,
+          summary: "Containerized multi-service deployment lab running isolated Nginx reverse proxies, REST APIs, and database containers on Ubuntu VM.",
+          architecture: "Docker Compose orchestration with bridged virtual networks, automated health checks, and hardened SSH access.",
+          tags: ["Docker", "Ubuntu Linux", "Nginx", "REST API"],
+          liveUrl: "#vm-live",
+          repoUrl: "https://github.com/iSkaDoodle"
+        }
+      ],
+      skills: {
+        "FRONTEND": [
+          { name: "React / Next.js", level: 92, desc: "Component-driven architecture, hooks, state machines, and responsive UI engineering." },
+          { name: "TypeScript / JavaScript", level: 90, desc: "Strongly-typed full-stack applications, async pipelines, and DOM/Canvas APIs." },
+          { name: "Tailwind CSS & Motion", level: 95, desc: "Custom clip-path geometry, skewed HUD layouts, and 60fps CSS transitions." },
+          { name: "HTML5 & Web Audio API", level: 88, desc: "Semantic accessibility, video loop layers, and procedural sound synthesis." }
+        ],
+        "BACKEND & CLOUD": [
+          { name: "Firebase (Firestore / Auth)", level: 91, desc: "Real-time NoSQL data modeling, security rules, OAuth, and Firebase Hosting." },
+          { name: "Node.js & Express APIs", level: 85, desc: "RESTful endpoints, middleware authentication, and webhook integrations." },
+          { name: "SQL & SAP Enterprise Systems", level: 82, desc: "Relational database querying, ERP workflows, and structured business logic." },
+          { name: "Docker & Linux Administration", level: 80, desc: "Containerized microservices, Ubuntu VM networking, and deployment automation." }
+        ],
+        "TOOLS & 3D": [
+          { name: "Git / GitHub Workflows", level: 90, desc: "Version control, branching strategies, pull requests, and CI/CD pipelines." },
+          { name: "Python & PyOpenGL", level: 84, desc: "3D graphics programming, matrix transformations, and scripting automation." },
+          { name: "Figma & UI Prototyping", level: 86, desc: "Wireframing, typography hierarchy, and game-inspired interface design." }
+        ]
+      },
+      aboutTabs: [
+        {
+          tabLabel: "LEADER",
+          codename: "DANIEL JOHN BASILAN",
+          arcana: "0 // THE FOOL — FULL-STACK ARCHITECT",
+          renderPath: "./public/renders/leader.png",
+          renderTitle: "LEADER RENDER",
+          headline: "Bridging High-Craft UI with Scalable Cloud Backends",
+          bio: "Full-stack developer focused on building memorable, responsive web applications backed by clean Firebase and Node.js architectures. Inspired by tactile game interfaces like Persona 3 Reload.",
+          stats: [
+            { label: "UI / UX PRECISION", val: "RANK 5 (MAX)", pct: 95 },
+            { label: "FULL-STACK ARCHITECTURE", val: "RANK 4", pct: 88 },
+            { label: "SYSTEMS & CLOUD", val: "RANK 4", pct: 84 }
+          ]
+        },
+        {
+          tabLabel: "PARTY 01",
+          codename: "EDUCATION & TRAINING",
+          arcana: "II // THE PRIESTESS — ACADEMIC & ENTERPRISE",
+          renderPath: "./public/renders/party1.png",
+          renderTitle: "PARTY 01 RENDER",
+          headline: "Information Technology & SAP Certified Training",
+          bio: "Grounded in software engineering fundamentals, enterprise ERP systems (SAP), network security, and hands-on full-stack application development.",
+          stats: [
+            { label: "SOFTWARE ENGINEERING", val: "STI IT TRACK", pct: 92 },
+            { label: "SAP ENTERPRISE SYSTEMS", val: "CERTIFIED", pct: 86 },
+            { label: "NETWORK & APP SECURITY", val: "VERIFIED", pct: 82 }
+          ]
+        },
+        {
+          tabLabel: "PARTY 02",
+          codename: "DEV SETUP & INTERESTS",
+          arcana: "VII // THE CHARIOT — WORKFLOW & CRAFT",
+          renderPath: "./public/renders/party2.png",
+          renderTitle: "PARTY 02 RENDER",
+          headline: "Linux VMs, 3D Graphics & JRPG Interface Design",
+          bio: "When not shipping React + Firebase apps, I experiment with containerized Linux microservices, PyOpenGL 3D shaders, and recreating iconic JRPG HUDs on the web.",
+          stats: [
+            { label: "CONTAINERIZATION (DOCKER)", val: "ACTIVE LAB", pct: 85 },
+            { label: "3D GRAPHICS (OPENGL)", val: "EXPLORING", pct: 80 },
+            { label: "JRPG UI MOTION STUDY", val: "PASSION MAX", pct: 98 }
+          ]
+        }
+      ],
+      certificates: [
+        {
+          id: "CERT-01",
+          title: "SAP Systems Training Certification",
+          issuer: "SAP University Alliances / STI",
+          year: "2025",
+          code: "SAP-ERP-2025-8841",
+          desc: "Completed hands-on enterprise resource planning workflows, business process integration, and relational data management in SAP."
+        },
+        {
+          id: "CERT-03",
+          title: "Network & Mobile App Security",
+          issuer: "Cybersecurity & Systems Lab",
+          year: "2025",
+          code: "SEC-NET-2025-7724",
+          desc: "Covered OWASP mobile/web threat mitigation, encrypted authentication flows, and hardened Linux server configuration."
+        }
+      ],
+      mailItems: [
+        {
+          id: "COMPOSE",
+          sender: "Send Direct Message",
+          subject: "Compose a transmission directly to Daniel's Firestore inbox",
+          tag: "NEW",
+          type: "form"
+        },
+        {
+          id: "GITHUB",
+          sender: "GitHub — @iSkaDoodle",
+          subject: "Inspect open-source repositories, commits, and full-stack codebases",
+          tag: "LINK",
+          type: "link",
+          url: "https://github.com/iSkaDoodle"
+        },
+        {
+          id: "LINKEDIN",
+          sender: "LinkedIn — Daniel John Basilan",
+          subject: "Connect professionally for full-stack roles and collaborations",
+          tag: "LINK",
+          type: "link",
+          url: "https://linkedin.com"
+        },
+        {
+          id: "EMAIL",
+          sender: "Direct Email — basilandj@gmail.com",
+          subject: "Click to copy email address to clipboard",
+          tag: "COPY",
+          type: "copy",
+          copyVal: "basilandj@gmail.com"
+        }
+      ],
+      inboxLog: [
+        { from: "Recruiter_Aegis", time: "2h ago", text: "Saw your P3R portfolio prototype—super clean transitions! Let's connect." }
+      ]
+    };
+
+    // ============================================================
+    // 2. APPLICATION STATE
+    // ============================================================
+    const state = {
+      screen: "HOME",
+      menuIdx: 0,
+      projectIdx: 0,
+      skillTab: "FRONTEND",
+      skillIdx: 0,
+      aboutTabIdx: 0,
+      certIdx: 0,
+      mailIdx: 0,
+      transitioning: false,
+      sfxOn: false,
+      bgmIdx: 0,
+      activeVideoSrc: ""
+    };
+
+    // ============================================================
+    // 3. INTRO BOOT SEQUENCE & VIDEO LOOP HANDLER
+    // ============================================================
+    let introFinished = false;
+
+    function revealInterfaceAndQueueAudio() {
+      if (introFinished) return;
+      introFinished = true;
+
+      ["topHud", "appViewport", "bottomHud"].forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          el.classList.remove("opacity-0");
+          el.classList.add("opacity-100");
+        }
+      });
+
+      const bgm = document.getElementById("bgmAudio");
+      if (bgm && !state.sfxOn) {
+        bgm.volume = 0.35;
+        bgm.play().then(() => {
+          state.sfxOn = true;
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          document.getElementById("sfxStateIcon").textContent = "🔊";
+          document.getElementById("sfxStateText").textContent = "BGM: ON";
+        }).catch(() => {
+          const unlockOnFirstInput = () => {
+            if (!state.sfxOn) toggleSfx();
+            window.removeEventListener("pointerdown", unlockOnFirstInput);
+            window.removeEventListener("keydown", unlockOnFirstInput);
+          };
+          window.addEventListener("pointerdown", unlockOnFirstInput);
+          window.addEventListener("keydown", unlockOnFirstInput);
+        });
+      }
+    }
+
+    function playFirstLoadSequence() {
+      const videoEl = document.getElementById("bgVideoLoop");
+      state.activeVideoSrc = "./public/videos/first_load.mp4";
+      videoEl.loop = false;
+      videoEl.src = state.activeVideoSrc;
+
+      videoEl.onloadeddata = () => {
+        videoEl.classList.remove("opacity-0");
+        videoEl.classList.add("opacity-100");
+        setTimeout(revealInterfaceAndQueueAudio, 1600);
+      };
+
+      videoEl.onerror = () => {
+        videoEl.classList.add("opacity-0");
+        revealInterfaceAndQueueAudio();
+      };
+
+      videoEl.onended = () => {
+        videoEl.loop = true;
+        state.activeVideoSrc = "";
+        setBackgroundVideoForScreen("HOME");
+      };
+    }
+
+    function setBackgroundVideoForScreen(screen) {
+      const videoEl = document.getElementById("bgVideoLoop");
+      const targetSrc = MEDIA_PATHS.videos[screen] || "./public/videos/main1.mp4";
+
+      if (state.activeVideoSrc === targetSrc) return;
+      state.activeVideoSrc = targetSrc;
+      videoEl.loop = true;
+
+      videoEl.src = targetSrc;
+      videoEl.onloadeddata = () => {
+        videoEl.classList.remove("opacity-0");
+        videoEl.classList.add("opacity-100");
+      };
+      videoEl.onerror = () => {
+        videoEl.classList.remove("opacity-100");
+        videoEl.classList.add("opacity-0");
+      };
+    }
+
+    // ============================================================
+    // 4. BGM MP3 PLAYER & WEB AUDIO API SYNTHESIZED P3R SFX
+    // ============================================================
+    let audioCtx = null;
+
+    function toggleSfx() {
+      state.sfxOn = !state.sfxOn;
+      const icon = document.getElementById("sfxStateIcon");
+      const text = document.getElementById("sfxStateText");
+      const bgm = document.getElementById("bgmAudio");
+      const track = MEDIA_PATHS.bgmTracks[state.bgmIdx];
+
+      if (state.sfxOn) {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+
+        if (bgm) {
+          bgm.volume = 0.35;
+          bgm.play().catch(() => {
+            showToast(`UI SFX active (check ${track.src})`);
+          });
+        }
+
+        icon.textContent = "🔊";
+        text.textContent = "BGM: ON";
+        playSfx("confirm");
+        showToast(`Playing: ${track.title}`);
+      } else {
+        if (bgm) bgm.pause();
+        icon.textContent = "🔇";
+        text.textContent = "BGM: OFF";
+      }
+    }
+
+    function nextBgmTrack() {
+      state.bgmIdx = (state.bgmIdx + 1) % MEDIA_PATHS.bgmTracks.length;
+      const track = MEDIA_PATHS.bgmTracks[state.bgmIdx];
+      const bgm = document.getElementById("bgmAudio");
+      const label = document.getElementById("bgmTrackLabel");
+
+      label.textContent = track.title;
+      if (bgm) {
+        bgm.src = track.src;
+        if (state.sfxOn) {
+          bgm.volume = 0.35;
+          bgm.play().catch(() => {});
+        }
+      }
+      playSfx("tab");
+      showToast(`Track: ${track.title}`);
+    }
+
+    function playSfx(type) {
+      if (!state.sfxOn) return;
+      try {
+        if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+        if (audioCtx.state === "suspended") audioCtx.resume();
+        const now = audioCtx.currentTime;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+
+        if (type === "hover") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(980, now);
+          osc.frequency.exponentialRampToValueAtTime(1480, now + 0.04);
+          gain.gain.setValueAtTime(0.07, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.045);
+          osc.start(now);
+          osc.stop(now + 0.045);
+        } else if (type === "slash") {
+          osc.type = "sawtooth";
+          osc.frequency.setValueAtTime(1200, now);
+          osc.frequency.exponentialRampToValueAtTime(180, now + 0.22);
+          gain.gain.setValueAtTime(0.14, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.24);
+          osc.start(now);
+          osc.stop(now + 0.24);
+        } else if (type === "confirm") {
+          osc.type = "triangle";
+          osc.frequency.setValueAtTime(659.25, now);
+          osc.frequency.setValueAtTime(987.77, now + 0.05);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.18);
+          osc.start(now);
+          osc.stop(now + 0.18);
+        } else if (type === "back") {
+          osc.type = "sine";
+          osc.frequency.setValueAtTime(580, now);
+          osc.frequency.exponentialRampToValueAtTime(210, now + 0.15);
+          gain.gain.setValueAtTime(0.11, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.16);
+          osc.start(now);
+          osc.stop(now + 0.16);
+        } else if (type === "tab") {
+          osc.type = "square";
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.setValueAtTime(780, now + 0.03);
+          gain.gain.setValueAtTime(0.05, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.07);
+          osc.start(now);
+          osc.stop(now + 0.07);
+        }
+      } catch (e) {}
+    }
+
+    // ============================================================
+    // 5. SCREEN TRANSITIONS & HUD UPDATES
+    // ============================================================
+    function goToScreen(targetScreen) {
+      if (state.transitioning || state.screen === targetScreen) return;
+      state.transitioning = true;
+
+      if (targetScreen === "HOME") {
+        playSfx("back");
+        const wipe = document.getElementById("wipeOverlay");
+        wipe.classList.remove("wipe-out");
+        wipe.classList.add("wipe-in");
+
+        setTimeout(() => {
+          state.screen = "HOME";
+          setBackgroundVideoForScreen("HOME");
+          renderScreen();
+          updateHudPrompts();
+
+          wipe.classList.remove("wipe-in");
+          wipe.classList.add("wipe-out");
+
+          setTimeout(() => {
+            wipe.classList.remove("wipe-out");
+            state.transitioning = false;
+          }, 340);
+        }, 320);
+      } else {
+        playSfx("slash");
+        const cutin = document.getElementById("critCutin");
+        cutin.classList.add("active");
+
+        setTimeout(() => {
+          state.screen = targetScreen;
+          setBackgroundVideoForScreen(targetScreen);
+          renderScreen();
+          updateHudPrompts();
+
+          setTimeout(() => {
+            cutin.classList.remove("active");
+            state.transitioning = false;
+          }, 160);
+        }, 280);
+      }
+    }
+
+    function updateHudPrompts() {
+      const cmdTitle = document.getElementById("cmdTitle");
+      const closeKey = document.getElementById("closeOrBackKey");
+      const closeLabel = document.getElementById("closeOrBackLabel");
+      const leftSubControls = document.getElementById("leftSubControls");
+      const tabKeyHint = document.getElementById("tabKeyHint");
+      const topStatMain = document.getElementById("topStatMain");
+      const topStatSub = document.getElementById("topStatSub");
+
+      if (state.screen === "HOME") {
+        const activeItem = DEV_DATA.menu[state.menuIdx];
+        cmdTitle.textContent = activeItem.cmdDesc;
+        closeKey.textContent = "↑ / ↓";
+        closeLabel.textContent = "Select [W/S]";
+        topStatMain.textContent = "21 // DEV";
+        topStatSub.textContent = "current status • full-stack";
+        leftSubControls.classList.add("hidden");
+        leftSubControls.classList.remove("flex");
+      } else {
+        closeKey.textContent = "ESC";
+        closeLabel.textContent = "Back";
+        topStatMain.textContent = state.screen;
+        topStatSub.textContent = "active sub-menu • p3r hud";
+
+        if (state.screen === "PROJECTS") cmdTitle.textContent = "Inspect Project Briefing";
+        if (state.screen === "SKILLS") cmdTitle.textContent = "Switch Skill Category";
+        if (state.screen === "ABOUT") cmdTitle.textContent = "Switch Party Dossier";
+        if (state.screen === "CERTIFICATES") cmdTitle.textContent = "Open Verified Credential";
+        if (state.screen === "CONTACT") cmdTitle.textContent = "Dispatch Firestore Mail";
+
+        if (state.screen === "SKILLS" || state.screen === "ABOUT") {
+          leftSubControls.classList.remove("hidden");
+          leftSubControls.classList.add("flex");
+          tabKeyHint.classList.remove("hidden");
+          tabKeyHint.classList.add("flex");
+        } else {
+          leftSubControls.classList.add("hidden");
+          leftSubControls.classList.remove("flex");
+        }
+      }
+    }
+
+    function triggerActiveSelection() {
+      if (state.screen === "HOME") {
+        goToScreen(DEV_DATA.menu[state.menuIdx].id);
+      } else if (state.screen === "CERTIFICATES") {
+        openCertModal(state.certIdx);
+      } else if (state.screen === "CONTACT") {
+        triggerMailRow(state.mailIdx);
+      }
+    }
+
+    function handleBackAction() {
+      if (state.screen !== "HOME") {
+        goToScreen("HOME");
+      } else {
+        hoverMenu((state.menuIdx + 1) % DEV_DATA.menu.length);
+      }
+    }
+
+    // ============================================================
+    // 6. LITERAL P3R SCREEN RENDERERS
+    // ============================================================
+    function renderScreen() {
+      const stage = document.getElementById("appViewport");
+      switch (state.screen) {
+        case "HOME": stage.innerHTML = renderMainMenu(); break;
+        case "PROJECTS": stage.innerHTML = renderProjectsScreen(); break;
+        case "SKILLS": stage.innerHTML = renderSkillsScreen(); break;
+        case "ABOUT": stage.innerHTML = renderAboutScreen(); break;
+        case "CERTIFICATES": stage.innerHTML = renderCertificatesScreen(); break;
+        case "CONTACT": stage.innerHTML = renderMailContactScreen(); break;
+      }
+    }
+
+    // --- SCREEN 1: MAIN PAUSE MENU ---
+function renderMainMenu() {
+  const menuListHtml = DEV_DATA.menu.map((item, idx) => {
+    const active = idx === state.menuIdx;
+    const isRecessed = !active && (idx === 1 || idx === 4);
+
+    return `
+      <button
+        onmouseenter="hoverMenu(${idx})"
+        onclick="goToScreen('${item.id}')"
+        style="${item.poseStyle} ${active ? 'z-index: 40;' : ''}"
+        class="p3-word-node group relative block text-left focus:outline-none cursor-pointer transition-all duration-150 origin-left ${
+          active ? 'scale-[1.06]' : (isRecessed ? 'opacity-78 hover:opacity-100' : 'opacity-95 hover:opacity-100')
+        }"
+      >
+        ${active ? `
+          <!-- Wedge-Shaped White + Hot-Pink Polygon Shard Behind Active Word -->
+          <span class="absolute -inset-x-4 sm:-inset-x-6 -top-1 bottom-0.5 bg-[#FF4D79] shard-pink-accent pointer-events-none"></span>
+          <span class="absolute -inset-x-3 sm:-inset-x-4 top-0 bottom-1 bg-white shard-white-main shadow-[0_8px_22px_rgba(0,15,50,0.45)] pointer-events-none"></span>
+        ` : ''}
+
+        <div class="relative flex items-center gap-2 px-1.5 py-0">
+          <span class="p3-font-display text-4xl sm:text-6xl md:text-[64px] leading-[0.84] tracking-tight transition-colors duration-75 ${
+            active ? 'p3-active-word' : 'p3-idle-word'
+          }">
+            ${item.label}
+          </span>
+          ${item.isNew ? `
+            <span class="bg-[#00D8FF] text-[#04122B] font-extrabold text-[9px] sm:text-[10px] px-1.5 py-0.5 shard-new-badge tracking-widest shadow">
+              NEW
+            </span>
+          ` : ''}
+        </div>
+      </button>
+    `;
+  }).join("");
+
+return `
+    <div class="relative w-full h-full flex items-center justify-center lg:justify-start px-6 sm:px-12">
+<!-- Full-Height Bleed Vertical 'MAIN' Watermark on Far-Left Edge -->
+<div class="fixed left-0 -top-12 -bottom-12 flex items-center pointer-events-none z-0 overflow-hidden select-none">
+  <span class="p3-vertical-main text-[260px] sm:text-[320px] lg:text-[380px] text-[#041638]/45 mix-blend-multiply -ml-8 sm:-ml-12">
+    iSka
+  </span>
+</div>
+
+<!-- Center-Left Crisp P3R Menu Cluster Positioned Beside Makoto -->
+<nav
+  aria-label="Primary Portfolio Menu"
+  class="relative z-10 flex flex-col items-start lg:ml-[37.5%] xl:ml-[39%] -mt-4 sm:-mt-6"
+>
+  ${menuListHtml}
+</nav
+    </div>
+  `;
+}
+    function hoverMenu(idx) {
+      if (state.menuIdx !== idx) {
+        state.menuIdx = idx;
+        playSfx("hover");
+        renderScreen();
+        updateHudPrompts();
+      }
+    }
+
+    // --- HELPER: SUB-SCREEN SPLIT BACKDROP ---
+    function renderSubScreenShell({ sectionTitle, leftContentHtml }) {
+      return `
+        <div class="relative w-full h-full overflow-hidden">
+          <div class="hidden lg:block fixed inset-0 bg-[#F4F8FF] shard-sub-white-bg pointer-events-none z-0"></div>
+          <div class="hidden lg:block fixed inset-0 bg-[#00D8FF] shard-sub-cyan-trim pointer-events-none z-0"></div>
+          <div class="lg:hidden fixed inset-0 bg-[#F4F8FF]/95 pointer-events-none z-0"></div>
+
+          <div class="relative z-10 w-full h-full grid grid-cols-1 lg:grid-cols-12 px-5 sm:px-10 lg:px-14 pt-20 pb-16 items-center">
+            <div class="lg:col-span-7 h-full flex flex-col justify-center overflow-y-auto p3-scroll pr-1">
+              <div class="flex items-center justify-between mb-3 sm:mb-4">
+                <h2 class="p3-font-display text-5xl sm:text-7xl text-[#04122B] leading-none tracking-tight transform -skew-x-6 drop-shadow-[3px_3px_0px_#00D8FF]">
+                  ${sectionTitle}
+                </h2>
+                <button
+                  onclick="goToScreen('HOME')"
+                  class="bg-[#04122B] hover:bg-[#FF1E42] text-white p3-font-cond font-extrabold text-xs sm:text-sm px-4 py-1.5 shard-tab-skew transition cursor-pointer shadow"
+                >
+                  ← BACK [ESC]
+                </button>
+              </div>
+              ${leftContentHtml}
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    // --- SCREEN 2: PROJECTS ---
+    function renderProjectsScreen() {
+      const currentProj = DEV_DATA.projects[state.projectIdx];
+
+      const rowsHtml = DEV_DATA.projects.map((p, idx) => {
+        const active = idx === state.projectIdx;
+        return `
+          <button
+            onmouseenter="selectProjectRow(${idx})"
+            onclick="selectProjectRow(${idx})"
+            class="w-full text-left transition-all duration-100 cursor-pointer focus:outline-none ${
+              active ? 'translate-x-2' : 'opacity-90 hover:opacity-100'
+            }"
+          >
+            <div class="flex items-center justify-between px-4 py-2.5 shard-row-skew border-b-4 transition-colors ${
+              active
+                ? 'bg-white text-[#04122B] border-[#FF1E42] shadow-[0_6px_18px_rgba(0,51,160,0.2)]'
+                : 'bg-[#04122B] text-white border-[#0066FF]'
+            }">
+              <div class="flex items-center gap-3">
+                <span class="px-2 py-0.5 text-[10px] font-extrabold tracking-widest ${
+                  active ? 'bg-[#FF1E42] text-white' : 'bg-[#00D8FF] text-[#04122B]'
+                }">
+                  PROJECT
+                </span>
+                <span class="p3-font-cond font-extrabold text-lg sm:text-xl tracking-wide">
+                  ${p.title}
+                </span>
+                ${p.isNew ? `<span class="bg-[#00D8FF] text-[#04122B] text-[9px] font-extrabold px-1.5 py-0.5 shard-new-badge">NEW</span>` : ''}
+              </div>
+              <div class="flex items-center gap-3 text-xs font-extrabold">
+                <span class="${active ? 'text-[#0066FF]' : 'text-[#00D8FF]'}">${p.stackLabel}</span>
+                <span class="opacity-70">${p.year}</span>
+              </div>
+            </div>
+          </button>
+        `;
+      }).join("");
+
+      const tagsHtml = currentProj.tags.map(t => `
+        <span class="bg-[#04122B] text-[#00D8FF] text-[11px] font-bold px-2.5 py-0.5 tracking-wide">
+          ${t}
+        </span>
+      `).join("");
+
+      const leftHtml = `
+        <div class="flex flex-col gap-2 mb-4">
+          ${rowsHtml}
+        </div>
+
+        <div class="bg-[#04122B] text-white border-l-8 border-[#FF1E42] p-4 sm:p-5 shadow-xl">
+          <div class="flex flex-wrap items-center justify-between gap-2 mb-1.5">
+            <span class="text-[11px] font-extrabold tracking-widest text-[#00D8FF] uppercase">
+              ${currentProj.id} // QUEST BRIEFING
+            </span>
+            <div class="flex flex-wrap gap-1.5">
+              ${tagsHtml}
+            </div>
+          </div>
+          <p class="text-xs sm:text-sm text-slate-100 leading-relaxed mb-2">
+            ${currentProj.summary}
+          </p>
+          <p class="text-[11px] text-[#00D8FF]/90 font-medium mb-3">
+            <strong>Architecture:</strong> ${currentProj.architecture}
+          </p>
+          <div class="flex flex-wrap gap-2.5">
+            <button onclick="showToast('Launching Live Demo: ${currentProj.title}')" class="bg-[#00D8FF] hover:bg-white text-[#04122B] font-extrabold text-xs px-4 py-1.5 transition cursor-pointer">
+              LIVE DEMO ↗
+            </button>
+            <a href="${currentProj.repoUrl}" target="_blank" rel="noopener" onclick="playSfx('confirm')" class="bg-white/10 hover:bg-[#FF1E42] text-white font-extrabold text-xs px-4 py-1.5 transition">
+              GITHUB REPO ↗
+            </a>
+          </div>
+        </div>
+      `;
+
+      return renderSubScreenShell({
+        sectionTitle: "PROJECTS",
+        leftContentHtml: leftHtml
+      });
+    }
+
+    function selectProjectRow(idx) {
+      if (state.projectIdx !== idx) {
+        state.projectIdx = idx;
+        playSfx("hover");
+        renderScreen();
+      }
+    }
+
+    // --- SCREEN 3: SKILLS ---
+    function renderSkillsScreen() {
+      const tabKeys = Object.keys(DEV_DATA.skills);
+      const list = DEV_DATA.skills[state.skillTab];
+      const activeSkill = list[state.skillIdx] || list[0];
+
+      const tabsHtml = tabKeys.map(tab => {
+        const active = tab === state.skillTab;
+        return `
+          <button
+            onclick="changeSkillTab('${tab}')"
+            class="px-3.5 py-1 p3-font-cond font-extrabold text-sm tracking-wider shard-tab-skew transition cursor-pointer ${
+              active
+                ? 'bg-[#FF1E42] text-white shadow'
+                : 'bg-[#04122B] text-white hover:bg-[#0066FF]'
+            }"
+          >
+            ${tab}
+          </button>
+        `;
+      }).join("");
+
+      const rowsHtml = list.map((sk, idx) => {
+        const active = idx === state.skillIdx;
+        const segments = 10;
+        const filled = Math.round(sk.level / 10);
+        let segHtml = "";
+        for (let i = 1; i <= segments; i++) {
+          segHtml += `<span class="h-2 flex-1 ${
+            i <= filled
+              ? (active ? 'bg-[#FF1E42]' : 'bg-[#00D8FF]')
+              : 'bg-slate-700/60'
+          }"></span>`;
+        }
+
+        return `
+          <div
+            onmouseenter="selectSkillItem(${idx})"
+            onclick="selectSkillItem(${idx})"
+            class="px-4 py-2.5 shard-row-skew border-b-2 transition-all cursor-pointer ${
+              active
+                ? 'bg-white text-[#04122B] border-[#FF1E42] translate-x-2 shadow-md'
+                : 'bg-[#04122B] text-white border-[#0066FF]'
+            }"
+          >
+            <div class="flex items-center justify-between mb-1.5">
+              <div class="flex items-center gap-2.5">
+                <span class="px-2 py-0.5 text-[10px] font-extrabold ${
+                  active ? 'bg-[#04122B] text-[#00D8FF]' : 'bg-[#0066FF] text-white'
+                }">SKILL</span>
+                <span class="p3-font-cond font-extrabold text-lg sm:text-xl">${sk.name}</span>
+              </div>
+              <span class="p3-font-display text-lg sm:text-xl ${active ? 'text-[#FF1E42]' : 'text-[#00D8FF]'}">
+                Lv. ${sk.level}
+              </span>
+            </div>
+            <div class="flex gap-1">${segHtml}</div>
+          </div>
+        `;
+      }).join("");
+
+      const leftHtml = `
+        <div class="flex flex-wrap items-center gap-2 mb-3">
+          <span class="bg-[#04122B] text-[#00D8FF] font-extrabold text-[10px] px-2 py-1">LB [Q]</span>
+          ${tabsHtml}
+          <span class="bg-[#04122B] text-[#00D8FF] font-extrabold text-[10px] px-2 py-1">RB [E]</span>
+        </div>
+
+        <div class="flex flex-col gap-2 mb-4">
+          ${rowsHtml}
+        </div>
+
+        <div class="bg-[#04122B] text-white border-l-8 border-[#00D8FF] px-4 py-3 shadow-lg">
+          <div class="text-[10px] font-extrabold tracking-widest text-[#00D8FF] uppercase">
+            SKILL EFFECT // ${activeSkill.name}
+          </div>
+          <p class="text-xs sm:text-sm text-slate-100 mt-0.5">${activeSkill.desc}</p>
+        </div>
+      `;
+
+      return renderSubScreenShell({
+        sectionTitle: "SKILLS",
+        leftContentHtml: leftHtml
+      });
+    }
+
+    function changeSkillTab(tab) {
+      if (state.skillTab !== tab) {
+        state.skillTab = tab;
+        state.skillIdx = 0;
+        playSfx("tab");
+        renderScreen();
+      }
+    }
+
+    function selectSkillItem(idx) {
+      if (state.skillIdx !== idx) {
+        state.skillIdx = idx;
+        playSfx("hover");
+        renderScreen();
+      }
+    }
+
+    // --- SCREEN 4: ABOUT ---
+    function renderAboutScreen() {
+      const currentTab = DEV_DATA.aboutTabs[state.aboutTabIdx];
+
+      const tabsHtml = DEV_DATA.aboutTabs.map((t, idx) => {
+        const active = idx === state.aboutTabIdx;
+        return `
+          <button
+            onclick="selectAboutTab(${idx})"
+            class="w-full text-left px-3 py-2.5 shard-tab-skew font-extrabold text-xs sm:text-sm tracking-wider transition cursor-pointer ${
+              active
+                ? 'bg-[#FF1E42] text-white translate-x-1.5 shadow-lg'
+                : 'bg-[#04122B] text-white hover:bg-[#0066FF]'
+            }"
+          >
+            ${t.tabLabel}
+          </button>
+        `;
+      }).join("");
+
+      const statsHtml = currentTab.stats.map(st => `
+        <div class="bg-[#04122B]/95 p-3 border-l-4 border-[#00D8FF]">
+          <div class="flex justify-between text-xs font-extrabold mb-1">
+            <span class="text-white">${st.label}</span>
+            <span class="text-[#00D8FF]">${st.val}</span>
+          </div>
+          <div class="w-full h-2 bg-slate-800">
+            <div class="h-full bg-gradient-to-r from-[#0066FF] to-[#00D8FF]" style="width:${st.pct}%"></div>
+          </div>
+        </div>
+      `).join("");
+
+      const leftHtml = `
+        <div class="grid grid-cols-1 sm:grid-cols-12 gap-4 items-start">
+          <div class="sm:col-span-3 flex sm:flex-col gap-2">
+            ${tabsHtml}
+          </div>
+
+          <div class="sm:col-span-9 bg-white text-[#04122B] border-t-8 border-[#0033A0] p-5 shadow-xl">
+            <div class="inline-block bg-[#04122B] text-[#00D8FF] text-[10px] font-extrabold px-2.5 py-0.5 tracking-widest mb-1.5">
+              ${currentTab.arcana}
+            </div>
+            <h3 class="p3-font-display text-3xl sm:text-4xl text-[#04122B] leading-none">
+              ${currentTab.codename}
+            </h3>
+            <p class="text-xs font-extrabold text-[#FF1E42] uppercase tracking-wide mt-1 mb-3">
+              ${currentTab.headline}
+            </p>
+            <p class="text-xs sm:text-sm text-slate-700 leading-relaxed mb-4">
+              ${currentTab.bio}
+            </p>
+
+            <div class="flex flex-col gap-2">
+              ${statsHtml}
+            </div>
+          </div>
+        </div>
+      `;
+
+      return renderSubScreenShell({
+        sectionTitle: "ABOUT",
+        leftContentHtml: leftHtml
+      });
+    }
+
+    function selectAboutTab(idx) {
+      if (state.aboutTabIdx !== idx) {
+        state.aboutTabIdx = idx;
+        playSfx("tab");
+        renderScreen();
+      }
+    }
+
+    // --- SCREEN 5: CERTIFICATES ---
+    function renderCertificatesScreen() {
+      const listHtml = DEV_DATA.certificates.map((c, idx) => {
+        const active = idx === state.certIdx;
+        return `
+          <div
+            onmouseenter="selectCertRow(${idx})"
+            onclick="openCertModal(${idx})"
+            class="px-4 py-3 shard-row-skew border-b-4 transition-all cursor-pointer ${
+              active
+                ? 'bg-white text-[#04122B] border-[#FF1E42] translate-x-2 shadow-lg'
+                : 'bg-[#04122B] text-white border-[#0066FF]'
+            }"
+          >
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <span class="px-2 py-0.5 text-[10px] font-extrabold ${
+                  active ? 'bg-[#FF1E42] text-white' : 'bg-[#00D8FF] text-[#04122B]'
+                }">${c.id}</span>
+                <div>
+                  <div class="p3-font-cond font-extrabold text-lg sm:text-xl leading-tight">${c.title}</div>
+                  <div class="text-xs font-bold ${active ? 'text-[#0066FF]' : 'text-slate-300'}">${c.issuer} • ${c.year}</div>
+                </div>
+              </div>
+              <span class="text-xs font-extrabold underline ${active ? 'text-[#FF1E42]' : 'text-[#00D8FF]'}">
+                INSPECT ▶
+              </span>
+            </div>
+          </div>
+        `;
+      }).join("");
+
+      const leftHtml = `
+        <p class="text-xs font-extrabold tracking-widest text-[#0033A0] uppercase mb-3">
+          SELECT A CREDENTIAL TO INSPECT VERIFIED CERTIFICATE
+        </p>
+        <div class="flex flex-col gap-2.5">
+          ${listHtml}
+        </div>
+      `;
+
+      return renderSubScreenShell({
+        sectionTitle: "CERTIFICATES",
+        leftContentHtml: leftHtml
+      });
+    }
+
+    function selectCertRow(idx) {
+      if (state.certIdx !== idx) {
+        state.certIdx = idx;
+        playSfx("hover");
+        renderScreen();
+      }
+    }
+
+    function openCertModal(idx) {
+      const c = DEV_DATA.certificates[idx];
+      playSfx("confirm");
+      document.getElementById("modalCertTitle").textContent = c.title;
+      document.getElementById("modalCertIssuer").textContent = `${c.issuer} • Issued ${c.year}`;
+      document.getElementById("modalCertDesc").textContent = c.desc;
+      document.getElementById("modalCertCode").textContent = `CREDENTIAL ID: ${c.code}`;
+      document.getElementById("certModal").classList.remove("hidden");
+    }
+
+    function closeCertModal() {
+      playSfx("back");
+      document.getElementById("certModal").classList.add("hidden");
+    }
+
+    // --- SCREEN 6: CONTACT (LITERAL P3R "MAIL" PHONE INBOX) ---
+    function renderMailContactScreen() {
+      const selectedMail = DEV_DATA.mailItems[state.mailIdx];
+
+      const rowsHtml = DEV_DATA.mailItems.map((m, idx) => {
+        const active = idx === state.mailIdx;
+        return `
+          <button
+            onmouseenter="selectMailRow(${idx})"
+            onclick="triggerMailRow(${idx})"
+            class="w-full text-left transition-all duration-100 cursor-pointer focus:outline-none ${
+              active ? 'translate-x-2' : 'opacity-90 hover:opacity-100'
+            }"
+          >
+            <div class="flex items-center justify-between px-4 py-2.5 shard-row-skew border-l-8 transition-colors ${
+              active
+                ? 'bg-white text-[#04122B] border-[#FF1E42] shadow-lg'
+                : 'bg-[#04122B]/90 text-white border-[#00D8FF]'
+            }">
+              <div class="flex items-center gap-3">
+                <span class="w-7 h-7 flex items-center justify-center font-bold text-sm ${
+                  active ? 'bg-[#FF1E42] text-white' : 'bg-[#0066FF] text-white'
+                }">✉</span>
+                <div>
+                  <div class="p3-font-cond font-extrabold text-lg leading-none">${m.sender}</div>
+                  <div class="text-[11px] font-medium mt-0.5 ${active ? 'text-slate-600' : 'text-slate-300'}">${m.subject}</div>
+                </div>
+              </div>
+              <span class="text-[10px] font-extrabold px-2 py-0.5 ${
+                m.tag === 'NEW'
+                  ? 'bg-[#00D8FF] text-[#04122B] shard-new-badge'
+                  : (active ? 'bg-[#04122B] text-white' : 'bg-white/15 text-[#00D8FF]')
+              }">
+                ${m.tag}
+              </span>
+            </div>
+          </button>
+        `;
+      }).join("");
+
+      const inboxRepliesHtml = DEV_DATA.inboxLog.map(msg => `
+        <div class="text-[11px] bg-white/10 px-3 py-1.5 border-l-2 border-[#00D8FF] flex justify-between gap-2">
+          <span><strong class="text-[#00D8FF]">${msg.from}:</strong> ${msg.text}</span>
+          <span class="text-slate-400 shrink-0">${msg.time}</span>
+        </div>
+      `).join("");
+
+      const leftHtml = `
+        <div class="flex flex-col gap-2 mb-3.5">
+          ${rowsHtml}
+        </div>
+
+        <div class="bg-[#04122B] text-white border-t-4 border-[#00D8FF] p-4 shadow-xl">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-[11px] font-extrabold tracking-widest text-[#00D8FF] uppercase">
+              ${selectedMail.id === 'COMPOSE' ? 'NEW TRANSMISSION // FIRESTORE MAIL DISPATCH' : `SELECTED CHANNEL // ${selectedMail.sender}`}
+            </span>
+            <span class="text-[10px] font-mono text-emerald-400">● FIRESTORE READY</span>
+          </div>
+
+          <form onsubmit="submitMailForm(event)" class="flex flex-col gap-2.5">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+              <input id="mailName" type="text" required placeholder="Sender Name" class="bg-[#0A1E42] border border-[#00D8FF]/40 focus:border-[#00D8FF] px-3 py-1.5 text-xs text-white outline-none" />
+              <input id="mailEmail" type="email" required placeholder="Sender Email" class="bg-[#0A1E42] border border-[#00D8FF]/40 focus:border-[#00D8FF] px-3 py-1.5 text-xs text-white outline-none" />
+            </div>
+            <textarea id="mailBody" rows="2" required placeholder="Write your message to Daniel John Basilan..." class="bg-[#0A1E42] border border-[#00D8FF]/40 focus:border-[#00D8FF] px-3 py-1.5 text-xs text-white outline-none resize-none"></textarea>
+            <div class="flex items-center justify-between gap-2">
+              <span class="text-[10px] text-slate-400">Stored in <code class="text-[#00D8FF]">messages</code> collection</span>
+              <button type="submit" class="bg-[#FF1E42] hover:bg-white text-white hover:text-[#04122B] font-extrabold text-xs px-5 py-1.5 shard-tab-skew transition cursor-pointer">
+                SEND MAIL ▶
+              </button>
+            </div>
+          </form>
+
+          <div class="mt-3 pt-2.5 border-t border-white/10 space-y-1.5 max-h-20 overflow-y-auto p3-scroll">
+            ${inboxRepliesHtml}
+          </div>
+        </div>
+      `;
+
+      return renderSubScreenShell({
+        sectionTitle: "MAIL",
+        leftContentHtml: leftHtml
+      });
+    }
+
+    function selectMailRow(idx) {
+      if (state.mailIdx !== idx) {
+        state.mailIdx = idx;
+        playSfx("hover");
+        renderScreen();
+      }
+    }
+
+    function triggerMailRow(idx) {
+      state.mailIdx = idx;
+      const item = DEV_DATA.mailItems[idx];
+      playSfx("confirm");
+      renderScreen();
+
+      if (item.type === "copy") {
+        navigator.clipboard.writeText(item.copyVal).catch(() => {});
+        showToast(`Copied ${item.copyVal} to clipboard!`);
+      } else if (item.type === "link") {
+        showToast(`Opening ${item.sender}...`);
+        window.open(item.url, "_blank", "noopener");
+      } else if (item.type === "form") {
+        const nameInput = document.getElementById("mailName");
+        if (nameInput) nameInput.focus();
+      }
+    }
+
+    function submitMailForm(e) {
+      e.preventDefault();
+      const sender = document.getElementById("mailName").value.trim();
+      const msg = document.getElementById("mailBody").value.trim();
+      playSfx("confirm");
+      DEV_DATA.inboxLog.unshift({
+        from: sender,
+        time: "Just now",
+        text: msg
+      });
+      e.target.reset();
+      renderScreen();
+      showToast(`Mail dispatched to Daniel's Firestore inbox!`);
+    }
+
+    // ============================================================
+    // 7. KEYBOARD NAVIGATION (ARROW UP/DOWN, W/S, ENTER, ESC, Q/E)
+    // ============================================================
+    window.addEventListener("keydown", (e) => {
+      if (["INPUT", "TEXTAREA"].includes(document.activeElement.tagName)) {
+        if (e.key === "Escape") document.activeElement.blur();
+        return;
+      }
+
+      if (state.transitioning) return;
+
+      const modal = document.getElementById("certModal");
+      if (!modal.classList.contains("hidden")) {
+        if (e.key === "Escape") closeCertModal();
+        return;
+      }
+
+      const isDown = e.key === "ArrowDown" || e.key === "s" || e.key === "S";
+      const isUp = e.key === "ArrowUp" || e.key === "w" || e.key === "W";
+      const isConfirm = e.key === "Enter" || e.key === " ";
+
+      if (state.screen === "HOME") {
+        if (isDown) {
+          e.preventDefault();
+          hoverMenu((state.menuIdx + 1) % DEV_DATA.menu.length);
+        } else if (isUp) {
+          e.preventDefault();
+          hoverMenu((state.menuIdx - 1 + DEV_DATA.menu.length) % DEV_DATA.menu.length);
+        } else if (isConfirm) {
+          e.preventDefault();
+          goToScreen(DEV_DATA.menu[state.menuIdx].id);
+        }
+      } else {
+        if (e.key === "Escape" || e.key === "Backspace") {
+          e.preventDefault();
+          goToScreen("HOME");
+        } else if (state.screen === "PROJECTS") {
+          if (isDown) {
+            e.preventDefault();
+            selectProjectRow((state.projectIdx + 1) % DEV_DATA.projects.length);
+          } else if (isUp) {
+            e.preventDefault();
+            selectProjectRow((state.projectIdx - 1 + DEV_DATA.projects.length) % DEV_DATA.projects.length);
+          }
+        } else if (state.screen === "SKILLS") {
+          const tabs = Object.keys(DEV_DATA.skills);
+          const tabIdx = tabs.indexOf(state.skillTab);
+          const list = DEV_DATA.skills[state.skillTab];
+
+          if (e.key === "e" || e.key === "E" || e.key === "ArrowRight") {
+            e.preventDefault();
+            changeSkillTab(tabs[(tabIdx + 1) % tabs.length]);
+          } else if (e.key === "q" || e.key === "Q" || e.key === "ArrowLeft") {
+            e.preventDefault();
+            changeSkillTab(tabs[(tabIdx - 1 + tabs.length) % tabs.length]);
+          } else if (isDown) {
+            e.preventDefault();
+            selectSkillItem((state.skillIdx + 1) % list.length);
+          } else if (isUp) {
+            e.preventDefault();
+            selectSkillItem((state.skillIdx - 1 + list.length) % list.length);
+          }
+        } else if (state.screen === "ABOUT") {
+          if (e.key === "e" || e.key === "E" || isDown || e.key === "ArrowRight") {
+            e.preventDefault();
+            selectAboutTab((state.aboutTabIdx + 1) % DEV_DATA.aboutTabs.length);
+          } else if (e.key === "q" || e.key === "Q" || isUp || e.key === "ArrowLeft") {
+            e.preventDefault();
+            selectAboutTab((state.aboutTabIdx - 1 + DEV_DATA.aboutTabs.length) % DEV_DATA.aboutTabs.length);
+          }
+        } else if (state.screen === "CERTIFICATES") {
+          if (isDown) {
+            e.preventDefault();
+            selectCertRow((state.certIdx + 1) % DEV_DATA.certificates.length);
+          } else if (isUp) {
+            e.preventDefault();
+            selectCertRow((state.certIdx - 1 + DEV_DATA.certificates.length) % DEV_DATA.certificates.length);
+          } else if (isConfirm) {
+            e.preventDefault();
+            openCertModal(state.certIdx);
+          }
+        } else if (state.screen === "CONTACT") {
+          if (isDown) {
+            e.preventDefault();
+            selectMailRow((state.mailIdx + 1) % DEV_DATA.mailItems.length);
+          } else if (isUp) {
+            e.preventDefault();
+            selectMailRow((state.mailIdx - 1 + DEV_DATA.mailItems.length) % DEV_DATA.mailItems.length);
+          } else if (isConfirm) {
+            e.preventDefault();
+            triggerMailRow(state.mailIdx);
+          }
+        }
+      }
+    });
+
+    // ============================================================
+    // 8. SUBMERGED WATER CAUSTICS & BUBBLE CANVAS
+    // ============================================================
+    function startWaterCanvas() {
+      const canvas = document.getElementById("waterCanvas");
+      const ctx = canvas.getContext("2d");
+      let w, h;
+      const bubbles = [];
+
+      function resize() {
+        w = canvas.width = window.innerWidth;
+        h = canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resize);
+      resize();
+
+      for (let i = 0; i < 55; i++) {
+        bubbles.push({
+          x: Math.random() * w,
+          y: Math.random() * h,
+          r: Math.random() * 4.5 + 1.2,
+          vy: Math.random() * 0.9 + 0.35,
+          phase: Math.random() * Math.PI * 2,
+          alpha: Math.random() * 0.45 + 0.15
+        });
+      }
+
+      function loop() {
+        ctx.clearRect(0, 0, w, h);
+
+        for (const b of bubbles) {
+          b.y -= b.vy;
+          b.phase += 0.025;
+          b.x += Math.sin(b.phase) * 0.45;
+          if (b.y < -12) {
+            b.y = h + 12;
+            b.x = Math.random() * w;
+          }
+
+          ctx.beginPath();
+          ctx.arc(b.x, b.y, b.r, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(255, 255, 255, ${b.alpha})`;
+          ctx.lineWidth = 1.2;
+          ctx.stroke();
+          ctx.fillStyle = `rgba(0, 216, 255, ${b.alpha * 0.5})`;
+          ctx.fill();
+        }
+
+        requestAnimationFrame(loop);
+      }
+      loop();
+    }
+
+    let toastTimer = null;
+    function showToast(message) {
+      const el = document.getElementById("toastBanner");
+      document.getElementById("toastText").textContent = message;
+      el.classList.remove("opacity-0");
+      el.classList.add("opacity-100");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => {
+        el.classList.remove("opacity-100");
+        el.classList.add("opacity-0");
+      }, 2800);
+    }
+
+    // Boot
+    window.onload = function () {
+      startWaterCanvas();
+      renderScreen();
+      updateHudPrompts();
+      playFirstLoadSequence();
+
+      const bgm = document.getElementById("bgmAudio");
+      if (bgm) {
+        bgm.addEventListener("ended", () => {
+          if (state.sfxOn) {
+            nextBgmTrack();
+          }
+        });
+      }
+    };
+  </script>
+</body>
+</html>
